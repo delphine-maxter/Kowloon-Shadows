@@ -1,10 +1,8 @@
-// Set unlock time: tomorrow at 7:30 PM local time
 function getUnlockTime() {
   const now = new Date();
-  const unlock = new Date(now);
-  // If it's already past 7:30 PM today, still set to tomorrow; else set to tomorrow explicitly
+  let unlock = new Date();
   unlock.setDate(now.getDate() + 1);
-  unlock.setHours(19, 30, 0, 0); // 7:30 PM local
+  unlock.setHours(19, 30, 0, 0); // 7:30 PM
   return unlock;
 }
 
@@ -21,18 +19,18 @@ function updateCountdown() {
     countdown.textContent = `Unlocks in ${hours}h ${mins}m ${secs}s`;
     unlockBtn.disabled = true;
     unlockBtn.classList.remove('glow');
-    unlockBtn.textContent = "Unlock Tour Text (Available: Tomorrow 7:30 PM)";
+    unlockBtn.textContent = "LOCKED";
   } else {
     countdown.textContent = "Unlocked!";
     unlockBtn.disabled = false;
     unlockBtn.classList.add('glow');
-    unlockBtn.textContent = "Unlock Tour Text";
+    unlockBtn.textContent = "UNLOCK";
   }
 }
 
 document.getElementById('unlockBtn').onclick = function() {
   if (!this.disabled) {
-    window.location.href = 'tour.html';
+    window.location.href = "tour.html";
   }
 };
 

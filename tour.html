@@ -2,41 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shadows of Kowloon Tour</title>
   <link rel="stylesheet" href="style.css">
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4QjKfC4H0rjf3n0QdXFJf2FqL1NqU9vV+4QjFvC+0A="
-    crossorigin="anonymous"
-  />
 </head>
 <body>
   <div class="split-container">
     <div class="tour-text">
       <h2>Tour Locations & Stories</h2>
-      <ul id="locationList">
-        <li data-name="St Andrew’s Church" data-lat="22.3121" data-lng="114.1725"><strong>St Andrew’s Church</strong>: Victorian Gothic, haunted organ notes, chill in the nave.</li>
-        <li data-name="Temple Street Night Market" data-lat="22.3077" data-lng="114.1687"><strong>Temple Street Night Market</strong>: Neon-lit, fortune tellers, shadowless clients.</li>
-        <li data-name="Tin Hau Temple (Yau Ma Tei)" data-lat="22.3072" data-lng="114.1681"><strong>Tin Hau Temple (Yau Ma Tei)</strong>: Goddess of the Sea, spirits of drowned sailors.</li>
-        <li data-name="Yau Ma Tei Theatre" data-lat="22.3078" data-lng="114.1689"><strong>Yau Ma Tei Theatre</strong>: Phantom applause, flickering lights.</li>
-        <li data-name="Shanghai Street (Tong Lau Row)" data-lat="22.3126" data-lng="114.1672"><strong>Shanghai Street (Tong Lau Row)</strong>: Pre-war shophouses, wartime echoes, lullabies.</li>
-        <li data-name="Mei Ho House" data-lat="22.3321" data-lng="114.1627"><strong>Mei Ho House</strong>: Resettlement estate, roaming spirits.</li>
-        <li data-name="Man Fat Seafood Restaurant" data-lat="22.3292" data-lng="114.1598"><strong>Man Fat Seafood Restaurant</strong>: Dai pai dong, Hungry Ghost Festival feasts.</li>
+      <ul>
+        <li><strong>St Andrew’s Church</strong>: Victorian Gothic, haunted organ notes, chill in the nave. <a href="https://goo.gl/maps/6w7wQKowloonChurch" target="_blank">View on Google Maps</a></li>
+        <li><strong>Temple Street Night Market</strong>: Neon-lit, fortune tellers, shadowless clients. <a href="https://goo.gl/maps/TempleStreetNightMarket" target="_blank">View on Google Maps</a></li>
+        <li><strong>Tin Hau Temple (Yau Ma Tei)</strong>: Goddess of the Sea, spirits of drowned sailors. <a href="https://goo.gl/maps/TinHauTempleYMT" target="_blank">View on Google Maps</a></li>
+        <li><strong>Yau Ma Tei Theatre</strong>: Phantom applause, flickering lights. <a href="https://goo.gl/maps/YauMaTeiTheatre" target="_blank">View on Google Maps</a></li>
+        <li><strong>Shanghai Street (Tong Lau Row)</strong>: Pre-war shophouses, wartime echoes, lullabies. <a href="https://goo.gl/maps/ShanghaiStreetTongLau" target="_blank">View on Google Maps</a></li>
+        <li><strong>Mei Ho House</strong>: Resettlement estate, roaming spirits. <a href="https://goo.gl/maps/MeiHoHouse" target="_blank">View on Google Maps</a></li>
+        <li><strong>Man Fat Seafood Restaurant</strong>: Dai pai dong, Hungry Ghost Festival feasts. <a href="https://goo.gl/maps/ManFatSeafood" target="_blank">View on Google Maps</a></li>
       </ul>
       <p>For full stories, see the attached file: <em>Shadows of Kowloon text.docx</em>.</p>
     </div>
-    <div class="map-container">
-      <div id="map" style="width:100%;height:600px"></div>
-    </div>
   </div>
-
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44c="
-    crossorigin="anonymous"></script>
-  <script src="locations.js"></script>
-  <script src="map.js"></script>
 </body>
 </html>
