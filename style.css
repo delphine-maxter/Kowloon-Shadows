@@ -1,0 +1,105 @@
+body {
+  background: #181818;
+  color: #eee;
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+}
+.centered-container {
+  text-align: center;
+  margin-top: 5vh;
+}
+.title {
+  font-size: 3.5em;
+  color: #8B0000;
+  text-shadow: 0 0 20px #300000, 0 0 5px #8B0000;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+}
+.intro {
+  font-size: 1.3em;
+  margin: 2em auto;
+  max-width: 700px;
+  line-height: 1.6;
+  color: #ccc;
+  text-shadow: 0 0 8px #222;
+}
+.countdown {
+  font-size: 1.2em;
+  margin: 1em 0;
+  color: #ff6666;
+  text-shadow: 0 0 8px #8B0000;
+}
+.unlock-btn {
+  background: #8B0000;
+  color: #fff;
+  border: none;
+  padding: 1em 2em;
+  font-size: 1.2em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 2em;
+  box-shadow: 0 0 10px #300000;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.unlock-btn:disabled {
+  background: #333;
+  cursor: not-allowed;
+  color: #aaa;
+  box-shadow: none;
+}
+.unlock-btn.glow {
+  box-shadow: 0 0 30px #ff2222, 0 0 10px #8B0000;
+  animation: glowPulse 1.5s infinite alternate;
+}
+@keyframes glowPulse {
+  from { box-shadow: 0 0 10px #8B0000; }
+  to { box-shadow: 0 0 30px #ff2222, 0 0 10px #8B0000; }
+}
+.split-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2em;
+  margin: 4vh auto;
+  max-width: 1200px;
+}
+.tour-text {
+  background: #222;
+  color: #eee;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #8B0000;
+  max-width: 500px;
+  min-width: 300px;
+  text-align: left;
+}
+.tour-text ul li {
+  cursor: pointer;
+}
+.map-container {
+  max-width: 600px;
+  min-width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #8B0000;
+}
+#map .leaflet-popup-content-wrapper {
+  background: #222;
+  color: #eee;
+}
+#map .leaflet-control-attribution {
+  color: #aaa;
+}
+@media (max-width: 900px) {
+  .split-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .map-container, .tour-text {
+    max-width: 95vw;
+    min-width: unset;
+  }
+}
