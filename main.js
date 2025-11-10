@@ -1,45 +1,33 @@
 
-// main.js — Single-file version that injects CSS for the button,
-// applies a dark-red harmonized glow, and handles fade-out + redirect.
+// main.js — minimal CSS injection (no font overrides) + working click redirect
 
 (function () {
   // ---------- CONFIG ----------
-  const BUTTON_ID = 'unlockBtn';        // The button element ID in your HTML
-  const REDIRECT_URL = 'tour.html';     // Target page after fade-out
-  const TITLE_SELECTOR = 'h1.page-title'; // Optional: colorize title if present
+  const BUTTON_ID = 'unlockBtn';
+  const REDIRECT_URL = 'tour.html';
 
-  // Durations (must match CSS transitions we inject below)
+  // Animation timings (must match injected CSS transitions)
   const OPACITY_MS = 280;
   const TRANSFORM_MS = 280;
   const GLOW_MS = 220;
 
-  // Dark-red theme (harmonized with title)
-  const TITLE_DARK_RED_HEX = '#8B0000'; // DarkRed for the title
-  // Button glow tones (slightly brighter reds to harmonize with title)
+  // Harmonized dark‑red glow (works with a DarkRed title like #8B0000)
   const BASE_GLOW = 'rgba(180, 58, 58, 0.85)';
   const BASE_GLOW_SHADOW = 'rgba(180, 58, 58, 0.65)';
   const HOVER_GLOW = 'rgba(210, 74, 74, 0.95)';
   const HOVER_GLOW_SHADOW = 'rgba(210, 74, 74, 0.75)';
 
-  // ---------- CSS INJECTION ----------
+  // ---------- CSS INJECTION (NO FONT PROPERTIES) ----------
   function injectCss() {
     const css = `
-/* Harmonize the page title with dark red */
-${TITLE_SELECTOR} {
-  color: ${TITLE_DARK_RED_HEX};
-  margin: 0 0 0.5rem 0;
-  font: 700 2rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
-/* Base button styling */
+/* Button base — inherits site fonts; no font or font-family set here */
 #${BUTTON_ID} {
   background: #1f1f1f;
-  color: #ffd9c7;                 /* warm light text that pairs with dark red */
+  color: inherit;                 /* inherit your site’s text color (or change if you prefer) */
   border: 1px solid #b43a3a;      /* medium red border */
   padding: 0.75rem 1.1rem;
   border-radius: 6px;
   cursor: pointer;
-  font: 600 15px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   /* Smooth transitions for glow and fade */
   transition:
@@ -49,13 +37,16 @@ ${TITLE_SELECTOR} {
     filter ${GLOW_MS}ms ease;
 }
 
+/* Optional: if you want a specific button text color without touching global fonts */
+#${BUTTON_ID} { color: #ffd9c7; }
+
 /* Base glow (harmonized red) */
 #${BUTTON_ID}.glow {
   box-shadow: 0 0 14px 5px ${BASE_GLOW};
   filter: drop-shadow(0 0 6px ${BASE_GLOW_SHADOW});
 }
 
-/* Hover / focus glow (slightly stronger) */
+/* Hover / focus glow */
 #${BUTTON_ID}.glow:hover,
 #${BUTTON_ID}.glow:focus {
   box-shadow: 0 0 18px 7px ${HOVER_GLOW};
@@ -89,26 +80,26 @@ ${TITLE_SELECTOR} {
   function attachBehavior() {
     const btn = document.getElementById(BUTTON_ID);
     if (!btn) {
-      console.warn(`[K-Shadows] Button #${BUTTON_ID} not found. Add <button id="${BUTTON_ID}">UNLOCK</button> to your HTML.`);
+      console.warn(`[unlock] Button #${BUTTON_ID} not found. Add <button id="${BUTTON_ID}">UNLOCK</button> to your HTML.`);
       return;
     }
 
-    // Ensure initial label and glow class
+    // Don’t touch typography — just ensure label and visual classes
     if (!btn.textContent || !btn.textContent.trim()) {
       btn.textContent = 'UNLOCK';
     }
     btn.classList.add('glow');
 
+    // Click: fade the button, then redirect
     btn.addEventListener('click', () => {
-      // Begin fade sequence
       btn.blur();                 // avoid focus ring flash
-      btn.classList.remove('glow'); // step 1: remove glow
-      // Force reflow so the browser sees distinct steps (glow removal vs fade-out)
+      btn.classList.remove('glow');
+      // Force reflow so glow removal and fade-out are separate steps
       // eslint-disable-next-line no-unused-expressions
       btn.offsetHeight;
-      btn.classList.add('fade-out'); // step 2: fade the entire button
+      btn.classList.add('fade-out');
 
-      // Redirect when transition ends (opacity or transform)
+      // Transition-based redirect
       const onTransitionEnd = (evt) => {
         if (evt.propertyName === 'opacity' || evt.propertyName === 'transform') {
           btn.removeEventListener('transitionend', onTransitionEnd);
@@ -117,7 +108,7 @@ ${TITLE_SELECTOR} {
       };
       btn.addEventListener('transitionend', onTransitionEnd);
 
-      // Safety fallback if transitionend doesn’t fire (e.g., CSS overridden)
+      // Safety fallback (in case transitionend doesn’t fire)
       const maxMs = Math.max(OPACITY_MS, TRANSFORM_MS) + 80;
       setTimeout(() => {
         try { btn.removeEventListener('transitionend', onTransitionEnd); } catch (_) {}
@@ -132,7 +123,6 @@ ${TITLE_SELECTOR} {
     attachBehavior();
   }
 
-  // Run after DOM is ready (or immediately if already loaded)
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
