@@ -25,6 +25,7 @@ function updateCountdown() {
     unlockBtn.disabled = false;
     unlockBtn.classList.add('glow');
     unlockBtn.textContent = "UNLOCK";
+    clearInterval(countdownInterval);
   }
 }
 
